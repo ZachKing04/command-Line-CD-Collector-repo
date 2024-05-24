@@ -3,10 +3,10 @@
 #include "../headers/cdcase.hpp"
 #include <cctype>
 #include <cstddef>
+#include <stdlib.h>
 #include <cstdlib>
 #include <string>
  
-
 
 
 
@@ -129,11 +129,11 @@ void getSearchInfo(string &addArtist, string &addTitle)  //pretty much all other
 
 
 
-void wishlistMenu(CDCase &collec, string &WishlistSortingComparator, string &addArtist, string &addTitle, string &addYear, string &addCountry)
+void wishlistMenu(CDCase &collec, string &collectionSortingComparator, string &WishlistSortingComparator, string &addArtist, string &addTitle, string &addYear, string &addCountry)
 {
     while(true)
     {
-        system("cls");
+        system("clear");
         collec.displayWishlist();
         std::cout << "| Add to wishlist ('add') |  Delete Wish ('del') | Move to Collection ('move') | Sort Wishlist ('sort') |\n\n";
         std::vector<string> WishOptions = {"add", "del", "move", "sort", "back"};
@@ -162,9 +162,6 @@ void wishlistMenu(CDCase &collec, string &WishlistSortingComparator, string &add
                     break;
                 }
             }
-
-
-
         } else if(userOption == "del"){
             
             while(true)
@@ -183,9 +180,6 @@ void wishlistMenu(CDCase &collec, string &WishlistSortingComparator, string &add
                     break;
                 }
             }
-
-
-
         } else if(userOption == "move"){
             while(true)
             {
@@ -200,10 +194,10 @@ void wishlistMenu(CDCase &collec, string &WishlistSortingComparator, string &add
                 std::cout << "\n"; 
                 if(yesOrNo == 'n')
                 {
+                    collec.sortCD(collectionSortingComparator, "Collection");
                     break;
                 }
             }
-
         } else if(userOption == "sort"){
             string sortBy;
             while(true)
@@ -224,23 +218,16 @@ void wishlistMenu(CDCase &collec, string &WishlistSortingComparator, string &add
         } else {
             std::cout << "Some error occured somewhere I guess" << std::endl;
         }
-
-
-        system("cls");
-
-
+        system("clear");
     }
-
-
-
 }
 
 
 void initialize()
 {
-    system("cls");
+    system("clear");
     CDCase collec;
-    string CollectionSortingComparator = "Artist";
+    string collectionSortingComparator = "Artist";
     string wishlistSortingComparator = "Artist";
 
     std::vector<string> options;
@@ -288,13 +275,8 @@ void initialize()
                 {
                     break;
                 }
-                
             }
-            collec.sortCD(CollectionSortingComparator, "Collection");
-            //TODO: use function to clear terminal
-
-
-
+            collec.sortCD(collectionSortingComparator, "Collection");
 
         } else if (userOption == "delete") {
             while(true)
@@ -313,9 +295,6 @@ void initialize()
                 }
 
             }
-            //TODO: Terminal Clear
-
-
         } else if (userOption == "sort") {
             string sortBy;
             while(true)
@@ -325,14 +304,12 @@ void initialize()
                 std::cin.ignore(1, '\n');
                 if(sortBy == "Artist" || sortBy == "Title" || sortBy == "Year" || sortBy == "Country")
                 {
-                    CollectionSortingComparator = sortBy;
+                    collectionSortingComparator = sortBy;
                     break;
                 }
                 std::cout << "Not a valid option, try again" << std::endl;
             }
-            collec.sortCD(CollectionSortingComparator, "Collection");
-            //TODO: Terminal Clear
-
+            collec.sortCD(collectionSortingComparator, "Collection");
         } else if (userOption == "add fav") {
             
             while(true)
@@ -350,7 +327,6 @@ void initialize()
                     break;
                 }
             }
-            //TODO: Clear Terminal
         } else if (userOption == "del fav") {
             while(true)
             {
@@ -367,23 +343,17 @@ void initialize()
                     break;
                 }
             }
-            //TODO: Clear Terminal
 
         } else if (userOption == "wish") {
-            wishlistMenu(collec, wishlistSortingComparator, addArtist, addTitle, addCountry, addYear);
-            //TODO: Clear Terminal
-
+            wishlistMenu(collec, collectionSortingComparator, wishlistSortingComparator, addArtist, addTitle, addCountry, addYear);
         } else if (userOption == "quit") {
             break;
         } else {
             std::cout << "Error Occured Somehow I Guess" << std::endl;
         }
-        std::system("cls");
+        system("clear");
     }
-
     collec.sortCD("Artist", "Collection");
     collec.sortCD("Artist", "Wishlist");
     //CDCase::saveToFile();
-    
-
 }

@@ -39,7 +39,6 @@ void CDCase::sortCD(string sortComparator, string vectorName)  //sorting will no
             std::sort(Wishlist.begin(), Wishlist.end(), [] (CD leftCD, CD rightCD) {return leftCD.Country < rightCD.Country;});
         }
     }
-
 }
 
 	
@@ -69,24 +68,43 @@ void CDCase::addCD(string artist, string title, int year, string country) // sor
 
 void CDCase::removeCD(string artistInp, string albumInp) 
 {
-    bool found = false;
     for(int i = 0; i < Collection.size(); i++)
     {
         if(Collection.at(i).Artist == artistInp && Collection.at(i).Title == albumInp)
         {
+            if(Collection.at(i).Fav)
+            {
+                for(int i = 0; i < Favorites.size(); i++)
+                {
+                    Favorites.erase(Favorites.begin() + i);
+                }
+            }
             Collection.erase(Collection.begin() + i);
-            found = true;
+            std::cout << "Album has been removed." << std::endl;
+            return;
         }
     }
-
-    if(found == true) 
-    {
-        std::cout << "Album has been removed." << std::endl;
-    } else {
-        std::cout << "Album not found." << std::endl;
-    }
+    std::cout << "Album not found." << std::endl;
 }
-
+/*
+void CDCase::removeCD(string artistInp, string albumInp) 
+{
+    for(auto &cd : Collection)
+    {
+        if(cd.Artist == artistInp && cd.Title == albumInp)
+        {
+            if(cd.Fav)
+            {
+                //Favorites.erase(std::remove(Favorites.begin(), Favorites.end(), cd), Favorites.end());
+            }
+            Collection.erase(std::remove(Collection.begin(), Collection.end(), cd), Collection.end());
+            std::cout << "Album has been removed" << std::endl;
+            return;
+        }
+    }
+    std::cout << "Album not found" << std::endl;
+}
+*/
 void CDCase::displayCollection() 
 {   //TODO: Change this later to be more visually appealing
     //      Artist: 30 spaces  Title: 40 Spaces   Year: 10  Country(2-letter code): 8    Fav: 5 
@@ -126,22 +144,33 @@ void CDCase::displayCollection()
 }
 
 
-void CDCase::addtoFavorites(string artist, string album) 
+void CDCase::addtoFavorites(string artist, string album)  //Fix the favorite system, deleting a favorited album will still count it as a favorite
 {
+    bool notInFavorites = true;
     if(Favorites.size() != 5)
     {
+        for(auto fav : Favorites)
+        {
+            if(fav.Artist == artist && fav.Title == album)
+            {
+                notInFavorites = false;
+                break;
+            }
+        }
         for(auto &cd : Collection)
         {
-            if(cd.Artist == artist && cd.Title == album)
+            if(cd.Artist == artist && cd.Title == album && notInFavorites)
             {
                 cd.Fav = true;
-                Favorites.push_back(cd);
+                Favorites.push_back(cd); //might have to change this back to Favorites.push_back(cd)
                 std::cout << "Album added to favorites" << std::endl;
                 return;
                 
             }
         }
         std::cout << "The album isn't in your collection." << std::endl;
+    } else if(notInFavorites == false){
+        std::cout << "This album is already a favorite" << std::endl;
     } else {
         std::cout << "You already have 5 favorite albums, album not added to favorites." << std::endl;
     }   
@@ -157,7 +186,7 @@ void CDCase::removeFavorite(string artist, string album)
         {
             Favorites.at(i).Fav = false;
             Favorites.erase(Favorites.begin() + i);
-            std::cout << "Album removed from favorites";
+            std::cout << "Album removed from favorites" << std::endl;
             return;
         }
     }
@@ -199,7 +228,6 @@ void CDCase::addtoWishlist(string artist, string title, int year, string country
 }
 
 
-
 void CDCase::removeWish(string artist, string title, bool moveToCollection) //sort after
 {   
     bool cd_found = false;
@@ -236,8 +264,8 @@ void CDCase::displayWishlist()
     std::cout << "+-------------------------------+----------------------------------------+----------+---------+" << std::endl;                                         
     std::cout << "|             Artist            |                 Title                  |   Year   | Country |" << std::endl;
     std::cout << "+-------------------------------+----------------------------------------+----------+---------+" << std::endl; 
-    //            | The Cure                      | Disintegration                         |   1989   |   US    |  *  |   separators and bottom borders part of loop
-    //            +-------------------------------+----------------------------------------+----------+---------+-----+    
+    //            | The Cure                      | Disintegration                         |   1989   |   US    | separators and bottom borders part of loop
+    //            +-------------------------------+----------------------------------------+----------+---------+   
     for(auto &cd : Wishlist)
     {
         string mainStr = "| " + cd.Artist;
@@ -252,10 +280,7 @@ void CDCase::displayWishlist()
         }
         mainStr += "|   " + std::to_string(cd.Year) + "   ";
         mainStr += "|   " + cd.Country + "    |";
-        
-        
         std::cout << mainStr << "\n" << "+-------------------------------+----------------------------------------+----------+---------+" << std::endl;
-        
     }  
     std::cout << Wishlist.size() << " albums in your wishlist" << "\n\n";
 }
