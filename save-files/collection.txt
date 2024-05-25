@@ -1,0 +1,33 @@
+Bjork|Post|1995|IS|0
+Bjork|Vespertine|2001|IS|1
+Cinema Staff|Symmetoronica|2009|JP|0
+Covet|Effloresce|2018|US|0
+Dir En Grey|Uroboros|2008|JP|0
+Ling Tosite Sigure|#4|2005|JP|0
+Ling Tosite Sigure|es or s|2015|JP|0
+Ling Tosite Sigure|I'mperfect|2013|JP|0
+Ling Tosite Sigure|Still A Sigure Virgin?|2010|JP|0
+Ling Tosite Sigure|just A moment|2009|JP|1
+Ling Tosite Sigure|Telecastic Fake Show|2008|JP|0
+Ling Tosite Sigure|Inspiration is Dead|2007|JP|0
+Ling Tosite Sigure|Feeling Your UFO|2006|JP|0
+My Bloody Valentine|Loveless|1991|IE|0
+Nine Inch Nails|The Downward Spiral|1994|US|0
+People In The Box|Family Record|2010|JP|0
+Plastic Tree|Traumerei|2002|JP|0
+Plastic Tree|Puppet Show|1998|JP|0
+Plastic Tree|Utsusemi|2008|JP|0
+Plastic Tree|Nega to Poji|2007|JP|0
+Plastic Tree|Parade|2000|JP|0
+Plastic Tree|Chandelier|2006|JP|0
+Plastic Tree|Cell|2004|JP|0
+Radiohead|In Rainbows|2007|UK|0
+Radiohead|Kid A|2000|UK|1
+Radiohead|Ok Computer|1997|UK|0
+Radiohead|Amnesiac|2001|UK|0
+The Cure|The Head on the Door|1985|UK|0
+The Cure|Wish|1992|UK|0
+The Cure|Disintegration|1989|UK|1
+The Smashing Pumpkins|Adore|1998|US|0
+The Smashing Pumpkins|Siamese Dream|1993|US|1
+Uchu Conbini|Feel the Dyeing Note|2013|JP|0

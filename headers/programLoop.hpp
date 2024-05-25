@@ -12,7 +12,6 @@ void getCDInput(string &addArtist, string &addTitle, string &addYear, string &ad
 
 void getSearchInfo(string &addArtist, string &addTitle);
 
-void wishlistMenu(CDCase &collec, string &WishlistSortingComparator, string &addArtist, string &addTitle, string &addYear, string &addCountry);
-
+void wishlistMenu(CDCase &collec, string &collectionSortingComparator, string &WishlistSortingComparator, string &addArtist, string &addTitle, string &addYear, string &addCountry);
 
 void initialize();

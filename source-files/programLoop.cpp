@@ -233,10 +233,7 @@ void initialize()
     std::vector<string> options;
     options = {"add", "delete", "sort", "add fav", "del fav", "wish", "quit"};
     
-
-
-
-    //CDCase::readFromFile();
+    collec.readFromFile();
     std::cout << "=====================================================================================================\n";
     std::cout << "                                    Welcome to CD Collector!\n";
     std::cout << "====================================================================================================="<< "\n\n";
@@ -277,7 +274,6 @@ void initialize()
                 }
             }
             collec.sortCD(collectionSortingComparator, "Collection");
-
         } else if (userOption == "delete") {
             while(true)
             {
@@ -293,7 +289,6 @@ void initialize()
                 {
                     break;
                 }
-
             }
         } else if (userOption == "sort") {
             string sortBy;
@@ -311,7 +306,6 @@ void initialize()
             }
             collec.sortCD(collectionSortingComparator, "Collection");
         } else if (userOption == "add fav") {
-            
             while(true)
             {
                 char yesOrNo;
@@ -334,7 +328,7 @@ void initialize()
                 
                 getSearchInfo(addArtist, addTitle);
                 collec.removeFavorite(addArtist, addTitle);
-                std::cout << "Would you like to add another album to favorites?(y/n)? ";
+                std::cout << "Would you like to remove another album from your favorites?(y/n)? ";
                 std::cin >> yesOrNo;
                 std::cin.ignore(1, '\n');
                 std::cout << "\n"; 
@@ -343,7 +337,6 @@ void initialize()
                     break;
                 }
             }
-
         } else if (userOption == "wish") {
             wishlistMenu(collec, collectionSortingComparator, wishlistSortingComparator, addArtist, addTitle, addCountry, addYear);
         } else if (userOption == "quit") {
@@ -355,5 +348,5 @@ void initialize()
     }
     collec.sortCD("Artist", "Collection");
     collec.sortCD("Artist", "Wishlist");
-    //CDCase::saveToFile();
+    collec.saveToFile();
 }

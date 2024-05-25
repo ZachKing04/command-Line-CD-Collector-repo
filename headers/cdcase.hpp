@@ -1,4 +1,5 @@
 #include <iostream>
+#include <memory>
 #include <vector>
 #pragma once
 using std::string;
@@ -19,9 +20,9 @@ class CD
 class CDCase
 {
     public:
-        std::vector<CD> Collection;
-        std::vector<CD> Favorites;
-        std::vector<CD> Wishlist;
+        std::vector<std::shared_ptr<CD>> Collection;
+        std::vector<std::shared_ptr<CD>> Favorites;
+        std::vector<std::shared_ptr<CD>> Wishlist;
 
         CDCase() {}
         
